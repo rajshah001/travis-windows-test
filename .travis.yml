@@ -38,7 +38,7 @@ script:
     webdrivermanager firefox chrome --linkpath /c/Python38/Scripts
     dir /c/Python38/Scripts
     python ${filename}.py
-    $DATE="Get-Date -Format 'MM-dd-yyyy'"                           
+    Set-Variable -Name "DATE" -Value "Get-Date -Format 'MM-dd-yyyy'"                           
     echo "$(Invoke-Expression $DATE)" 
     fi
 
