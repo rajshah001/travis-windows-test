@@ -14,8 +14,8 @@ jobs:
         - pip install awscli
         - pip install webdrivermanager
       script:
-        - dir ${PATH}
-        - webdrivermanager firefox chrome --linkpath ${PATH}
-        - dir ${PATH}
+        - dir /c/Python38/Scripts
+        - webdrivermanager firefox chrome --linkpath /c/Python38/Scripts
+        - dir /c/Python38/Scripts
         - python ${filename}.py
         
