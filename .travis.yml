@@ -2,18 +2,21 @@ language: python            # this works for Linux but is an error on macOS or W
 jobs:
   include:
     - name: "Python 3.8.0 on Linux"
+      language: python
+        python:
+        - '3.9'
       os: linux
-      dist: xenial
+        dist: xenial
       addons:
         firefox: latest
         chrome: stable
       before_install:
         - export TZ=Australia/Canberra
         - DATE=$(date +%Y-%m-%d)
-        install:
+      install:
         - pip install -r requirements.txt
         - pip install awscli
-        script:
+      script:
         - ls -lah
 
     - name: "Python 3.8.0 on Windows"
