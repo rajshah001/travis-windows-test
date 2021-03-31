@@ -1,8 +1,8 @@
-jobs:
-  include:
-    addons:
+addons:
       firefox: latest
       chrome: stable
+jobs:
+  include:
     - name: "Linux"
       language: python
       python: 3.8
