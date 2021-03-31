@@ -30,7 +30,9 @@ install:
 script:
   - |
     if [ ${TRAVIS_OS_NAME} == "linux" ]; then
-    ls -lah
+    ls -lah;
+    echo "The Date is : ${DATE}";
+    echo "The Date is : $DATE";
     fi
   - |
     if [ ${TRAVIS_OS_NAME} == "windows" ]; then
@@ -39,7 +41,8 @@ script:
     dir /c/Python38/Scripts;
     python ${filename}.py;
     DATE=$(date +%Y-%m-%d);
-    echo "The Date is : $DATE)";
+    echo "The Date is : ${DATE}";
+    echo "The Date is : $DATE";
     fi
 
 # - name: "Python 3.8.0 on Windows"
