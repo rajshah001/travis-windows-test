@@ -38,8 +38,8 @@ script:
     webdrivermanager firefox chrome --linkpath /c/Python38/Scripts
     dir /c/Python38/Scripts
     python ${filename}.py
-    Set-Variable -Name "DATE" -Value "Get-Date -Format 'MM-dd-yyyy'"                           
-    echo "$(Invoke-Expression $DATE)" 
+    \$DATE=\$(date -UFormat "%d-%m-%Y")
+    echo "The Date is : \$(\$DATE)" 
     fi
 
 # - name: "Python 3.8.0 on Windows"
