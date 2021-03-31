@@ -16,7 +16,7 @@ jobs:
       script:
         - dir
         - mkdir C:\bin
-        - webdrivermanager firefox chrome --linkpath C:\bin
+        - webdrivermanager firefox chrome --linkpath C:/bin
         - dir C:\bin
         - python ${filename}.py
         
