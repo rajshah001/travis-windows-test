@@ -4,18 +4,18 @@ addons:
 jobs:
   include:
     - name: "Linux"
-      - os: linux
-        language: python
-        python: 3.8
+      os: linux
+      language: python
+      python: 3.8
     - name: "Windows"
-      - os: windows
-        language: shell
+      os: windows
+      language: shell
     
 before_install:
-  - if os: linux
+  - if: os = linux
     - export TZ=Australia/Canberra
     - DATE=$(date +%Y-%m-%d)
-  - if os: windows
+  - if: oS = windows
     - choco install python --version 3.8.0
     - python --version
     - python -m pip install --upgrade pip
@@ -23,9 +23,9 @@ install:
   - pip install -r requirements.txt
   - pip install awscli
 script:
-  - if os: linux
+  - if: os = linux
     - ls -lah
-  - if os: windows
+  - if: os = windows
     - dir /c/Python38/Scripts
     - webdrivermanager firefox chrome --linkpath /c/Python38/Scripts
     - dir /c/Python38/Scripts
