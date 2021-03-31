@@ -1,5 +1,5 @@
 language: python            # this works for Linux but is an error on macOS or Windows
-jobs:
+matrix:
   include:
     - name: "Python 3.8.0 on Linux"
       language: python
