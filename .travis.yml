@@ -4,11 +4,12 @@ addons:
 jobs:
   include:
     - name: "Linux"
-      language: python
-      python: 3.8
+      - os: linux
+        language: python
+        python: 3.8
     - name: "Windows"
-      os: windows
-      language: shell
+      - os: windows
+        language: shell
     
 before_install:
   - if os: linux
