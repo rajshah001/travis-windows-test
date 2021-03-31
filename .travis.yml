@@ -1,38 +1,43 @@
-language: 
-  - python            # this works for Linux but is an error on macOS or Windows
-  - shell
-python:
-- '3.9'
 addons:
   firefox: latest
   chrome: stable
+
 os:
 - linux
 - windows
 
+jobs:
+  include:
+    - name: "Linux"
+      language: python
+      python: 3.8
+    - name: "Windows"
+      os: windows
+      language: shell
+    
 before_install:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
-    - export TZ=Australia/Canberra
-    - DATE=$(date +%Y-%m-%d)
+    export TZ=Australia/Canberra
+    DATE=$(date +%Y-%m-%d)
     fi
   - if [ "$TRAVIS_OS_NAME" == "windows" ]; then
-    - choco install python --version 3.8.0
-    - python --version
-    - python -m pip install --upgrade pip
+    choco install python --version 3.8.0
+    python --version
+    python -m pip install --upgrade pip
     fi
 install:
   - pip install -r requirements.txt
   - pip install awscli
 script:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
-    - ls -lah
+    ls -lah
     fi
   - if [ "$TRAVIS_OS_NAME" == "windows" ]; then
-    - dir /c/Python38/Scripts
-    - webdrivermanager firefox chrome --linkpath /c/Python38/Scripts
-    - dir /c/Python38/Scripts
-    - python ${filename}.py
-    - echo %date:~7,2%-%date:~4,2%-%date:~10,4%
+    dir /c/Python38/Scripts
+    webdrivermanager firefox chrome --linkpath /c/Python38/Scripts
+    dir /c/Python38/Scripts
+    python ${filename}.py
+    echo %date:~7,2%-%date:~4,2%-%date:~10,4%
     fi
   
     # - name: "Python 3.8.0 on Windows"
