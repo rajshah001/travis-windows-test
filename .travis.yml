@@ -2,6 +2,10 @@ addons:
   firefox: latest
   chrome: stable
 
+env:
+  global:
+    - TZ=Australia/Canberra
+
 jobs:
   include:
     - name: "Linux"
@@ -15,11 +19,13 @@ jobs:
 before_install:
   - |
     if [ ${TRAVIS_OS_NAME} == "linux" ]; then
-      export TZ=Australia/Canberra;
+      TZ=Australia/Canberra;
       DATE=$(date +%Y-%m-%d);
     fi
   - |
     if [ ${TRAVIS_OS_NAME} == "windows" ]; then
+      TZ=Australia/Canberra;
+      DATE=$(date +%Y-%m-%d);
       choco install python --version 3.8.0;
       python --version;
       python -m pip install --upgrade pip;
@@ -40,7 +46,6 @@ script:
     webdrivermanager firefox chrome --linkpath /c/Python38/Scripts;
     dir /c/Python38/Scripts;
     python ${filename}.py;
-    DATE=$(date +%Y-%m-%d);
     echo "The Date is : ${DATE}";
     echo "The Date is : $DATE";
     fi
