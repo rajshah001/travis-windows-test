@@ -26,6 +26,7 @@ before_install:
     if [ ${TRAVIS_OS_NAME} == "windows" ]; then
       export TZ=Australia/Canberra;
       DATE=$(date);
+      choco install googlechrome
       choco install python --version 3.8.0;
       python --version;
       python -m pip install --upgrade pip;
