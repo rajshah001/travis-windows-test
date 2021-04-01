@@ -26,14 +26,21 @@ before_install:
     if [ ${TRAVIS_OS_NAME} == "windows" ]; then
       export TZ=Australia/Canberra;
       DATE=$(date);
-      choco install googlechrome
       choco install python --version 3.8.0;
       python --version;
       python -m pip install --upgrade pip;
     fi
 install:
-  - pip install -r requirements.txt
-  - pip install awscli
+  - |
+    if [ ${TRAVIS_OS_NAME} == "linux" ]; then
+    pip install -r requirements.txt
+    pip install awscli
+    fi
+  - |
+    if [ ${TRAVIS_OS_NAME} == "windows" ]; then
+    choco install googlechrome;
+    choco upgrade googlechrome;
+    fi
 script:
   - |
     if [ ${TRAVIS_OS_NAME} == "linux" ]; then
