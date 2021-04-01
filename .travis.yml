@@ -13,7 +13,7 @@ jobs:
       python: 3.8
     - name: "Windows"
       os: windows
-      language: shell
+      language: generic
       env: PATH=/c/Python38:/c/Python38/Scripts:$PATH
     
 before_install:
@@ -26,9 +26,6 @@ before_install:
     if [ ${TRAVIS_OS_NAME} == "windows" ]; then
       export TZ=Australia/Canberra;
       DATE=$(date);
-      choco install python --version 3.8.0;
-      python --version;
-      python -m pip install --upgrade pip;
     fi
 install:
   - |
@@ -38,7 +35,7 @@ install:
     fi
   - |
     if [ ${TRAVIS_OS_NAME} == "windows" ]; then
-    PowerShell -Command '$Path = $env:TEMP; $Installer = “chrome_installer.exe”; Invoke-WebRequest “http://dl.google.com/chrome/chrome_installer.exe" -OutFile $Path\$Installer; Start-Process -FilePath $Path\$Installer -Args “/silent /install” -Verb RunAs -Wait; Remove-Item $Path\$Installer'
+    PowerShell -Command 'choco install -y googlechrome'
     fi
 script:
   - |
