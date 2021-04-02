@@ -35,7 +35,7 @@ install:
     fi
   - |
     if [ ${TRAVIS_OS_NAME} == "windows" ]; then
-    PowerShell -Command 'choco install -y googlechrome'
+    choco install -y googlechrome --ignore-checksums
     fi
 script:
   - |
